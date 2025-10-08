@@ -28,11 +28,15 @@ function App() {
   ));
 
   function rollDice() {
-    setDice((prevRoll) =>
-      prevRoll.map((roll) =>
-        roll.isHeld ? roll : { ...roll, value: Math.ceil(Math.random() * 6) }
-      )
-    );
+    gameWon
+      ? setDice(generateAllNewDice())
+      : setDice((prevRoll) =>
+          prevRoll.map((roll) =>
+            roll.isHeld
+              ? roll
+              : { ...roll, value: Math.ceil(Math.random() * 6) }
+          )
+        );
   }
 
   function hold(id) {
