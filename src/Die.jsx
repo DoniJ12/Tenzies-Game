@@ -1,7 +1,11 @@
-export default function({value}) {
-  return(
+export default function ({ value, isHeld }) {
+  const style = {
+    backgroundColor: isHeld ? "#59E391" : "white",
+  };
+
+  return (
     <>
-      <button>{value}</button>
+      <button style={style}>{value}</button>
     </>
-  )
+  );
 }
