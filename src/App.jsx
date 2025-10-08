@@ -7,7 +7,7 @@ function App() {
   function generateAllNewDice() {
     return new Array(10).fill(0).map(() => ({
       value: Math.ceil(Math.random() * 6),
-      isHeld: true,
+      isHeld: false,
       id: nanoid(),
     }));
   }
@@ -23,7 +23,11 @@ function App() {
   ));
 
   function rollDice() {
-    setDice(generateAllNewDice());
+    setDice((prevRoll) =>
+      prevRoll.map((roll) =>
+        roll.isHeld ? roll : { ...roll, value: Math.ceil(Math.random() * 6) }
+      )
+    );
   }
 
   function hold(id) {
